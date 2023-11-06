@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Text;
 
+public delegate void Handler(int number);
+
 class Sportsman
 {
     public int Number { get; }
     private bool hitTarget;
     public bool HitTarget { get { return hitTarget; } }
 
-    public event EventHandler Event1;
-    public event EventHandler Event2;
+    public Handler Event1;
+    public Handler Event2;
 
     public Sportsman(int number)
     {
@@ -20,9 +22,9 @@ class Sportsman
     public void GenerateEvent()
     {
         if (hitTarget)
-            Event1?.Invoke(this, EventArgs.Empty);
+            Event1?.Invoke(Number);
         else
-            Event2?.Invoke(this, EventArgs.Empty);
+            Event2?.Invoke(Number);
     }
 
     public void DisplayInfo()
@@ -36,20 +38,20 @@ class Judge
     private int totalSportsmen;
     private int hitsCount;
 
-    public event EventHandler Event3;
-    public event EventHandler Event4;
+    public Handler Event3;
+    public Handler Event4;
 
     public Judge(int totalSportsmen)
     {
         this.totalSportsmen = totalSportsmen;
     }
 
-    public void HandleEvent1(object sender, EventArgs e)
+    public void HandleEvent1(int number)
     {
         hitsCount++;
     }
 
-    public void HandleEvent2(object sender, EventArgs e)
+    public void HandleEvent2(int number)
     {
     }
 
@@ -57,11 +59,11 @@ class Judge
     {
         if (hitsCount > totalSportsmen / 2)
         {
-            Event3?.Invoke(this, EventArgs.Empty);
+            Event3?.Invoke(0);
         }
         else
         {
-            Event4?.Invoke(this, EventArgs.Empty);
+            Event4?.Invoke(0);
         }
     }
 
@@ -90,8 +92,8 @@ class Program
         for (int i = 0; i < totalSportsmen; i++)
         {
             sportsmen[i] = new Sportsman(i + 1);
-            sportsmen[i].Event1 += judge.HandleEvent1;
-            sportsmen[i].Event2 += judge.HandleEvent2;
+            sportsmen[i].Event1 = judge.HandleEvent1;
+            sportsmen[i].Event2 = judge.HandleEvent2;
         }
 
         foreach (var sportsman in sportsmen)
