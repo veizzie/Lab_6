@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Text;
 
-public delegate void Handler(int number);
 
 class Sportsman
 {
     public int Number { get; }
     private bool hitTarget;
     public bool HitTarget { get { return hitTarget; } }
+    public delegate void SportsmanEvent(int number);
 
-    public Handler Event1;
-    public Handler Event2;
+    public event SportsmanEvent Event1;
+    public event SportsmanEvent Event2;
 
     public Sportsman(int number)
     {
@@ -37,9 +37,10 @@ class Judge
 {
     private int totalSportsmen;
     private int hitsCount;
+    public delegate void JudgeEvent(int totalSportsmen, int hitsCount);
 
-    public Handler Event3;
-    public Handler Event4;
+    public event JudgeEvent Event3;
+    public event JudgeEvent Event4;
 
     public Judge(int totalSportsmen)
     {
@@ -59,11 +60,11 @@ class Judge
     {
         if (hitsCount > totalSportsmen / 2)
         {
-            Event3?.Invoke(0);
+            Event3?.Invoke(totalSportsmen, hitsCount);
         }
         else
         {
-            Event4?.Invoke(0);
+            Event4?.Invoke(totalSportsmen, hitsCount);
         }
     }
 
@@ -85,15 +86,15 @@ class Program
     static void Main()
     {
         Console.OutputEncoding = Encoding.UTF8;
-        int totalSportsmen = 10; // Змініть кількість спортсменів за потреби
+        int totalSportsmen = 10; // Кількість спортсменів
         Judge judge = new Judge(totalSportsmen);
 
         Sportsman[] sportsmen = new Sportsman[totalSportsmen];
         for (int i = 0; i < totalSportsmen; i++)
         {
             sportsmen[i] = new Sportsman(i + 1);
-            sportsmen[i].Event1 = judge.HandleEvent1;
-            sportsmen[i].Event2 = judge.HandleEvent2;
+            sportsmen[i].Event1 += judge.HandleEvent1;
+            sportsmen[i].Event2 += judge.HandleEvent2;
         }
 
         foreach (var sportsman in sportsmen)
