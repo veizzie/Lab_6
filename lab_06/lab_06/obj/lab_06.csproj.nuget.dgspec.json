@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sanya\\source\\Lab_6\\lab_06\\lab_06\\lab_06.csproj": {}
+    "C:\\Users\\Sanya\\source\\repos\\lab_06\\lab_06\\lab_06.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sanya\\source\\Lab_6\\lab_06\\lab_06\\lab_06.csproj": {
+    "C:\\Users\\Sanya\\source\\repos\\lab_06\\lab_06\\lab_06.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sanya\\source\\Lab_6\\lab_06\\lab_06\\lab_06.csproj",
+        "projectUniqueName": "C:\\Users\\Sanya\\source\\repos\\lab_06\\lab_06\\lab_06.csproj",
         "projectName": "lab_06",
-        "projectPath": "C:\\Users\\Sanya\\source\\Lab_6\\lab_06\\lab_06\\lab_06.csproj",
+        "projectPath": "C:\\Users\\Sanya\\source\\repos\\lab_06\\lab_06\\lab_06.csproj",
         "packagesPath": "C:\\Users\\Sanya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sanya\\source\\Lab_6\\lab_06\\lab_06\\obj\\",
+        "outputPath": "C:\\Users\\Sanya\\source\\repos\\lab_06\\lab_06\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sanya\\AppData\\Roaming\\NuGet\\NuGet.Config",
